@@ -68,74 +68,34 @@ public class interface_h {
     public static final AddressLayout C_POINTER = ValueLayout.ADDRESS
             .withTargetLayout(MemoryLayout.sequenceLayout(java.lang.Long.MAX_VALUE, JAVA_BYTE));
     public static final ValueLayout.OfLong C_LONG = ValueLayout.JAVA_LONG;
+    private static final int MULTIPLY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.MULTIPLY = 1
+     * }
+     */
+    public static int MULTIPLY() {
+        return MULTIPLY;
+    }
+    private static final int ADD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * enum <anonymous>.ADD = 2
+     * }
+     */
+    public static int ADD() {
+        return ADD;
+    }
 
-    private static class myscalalib_exports {
+    private static class myscalalib_run {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            interface_h.C_INT,
-            interface_h.C_INT,
-            interface_h.C_INT
-        );
-
-        public static final MemorySegment ADDR = interface_h.findOrThrow("myscalalib_exports");
-
-        public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
-    }
-
-    /**
-     * Function descriptor for:
-     * {@snippet lang=c :
-     * extern int myscalalib_exports(int i, int r)
-     * }
-     */
-    public static FunctionDescriptor myscalalib_exports$descriptor() {
-        return myscalalib_exports.DESC;
-    }
-
-    /**
-     * Downcall method handle for:
-     * {@snippet lang=c :
-     * extern int myscalalib_exports(int i, int r)
-     * }
-     */
-    public static MethodHandle myscalalib_exports$handle() {
-        return myscalalib_exports.HANDLE;
-    }
-
-    /**
-     * Address for:
-     * {@snippet lang=c :
-     * extern int myscalalib_exports(int i, int r)
-     * }
-     */
-    public static MemorySegment myscalalib_exports$address() {
-        return myscalalib_exports.ADDR;
-    }
-
-    /**
-     * {@snippet lang=c :
-     * extern int myscalalib_exports(int i, int r)
-     * }
-     */
-    public static int myscalalib_exports(int i, int r) {
-        var mh$ = myscalalib_exports.HANDLE;
-        try {
-            if (TRACE_DOWNCALLS) {
-                traceDowncall("myscalalib_exports", i, r);
-            }
-            return (int)mh$.invokeExact(i, r);
-        } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
-        }
-    }
-
-    private static class myscalalib_complex {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            interface_h.C_INT,
+            interface_h.C_FLOAT,
             interface_h.C_POINTER,
-            interface_h.C_POINTER
+            interface_h.C_FLOAT,
+            interface_h.C_FLOAT
         );
 
-        public static final MemorySegment ADDR = interface_h.findOrThrow("myscalalib_complex");
+        public static final MemorySegment ADDR = interface_h.findOrThrow("myscalalib_run");
 
         public static final MethodHandle HANDLE = Linker.nativeLinker().downcallHandle(ADDR, DESC);
     }
@@ -143,45 +103,45 @@ public class interface_h {
     /**
      * Function descriptor for:
      * {@snippet lang=c :
-     * extern void myscalalib_complex(int times, myscalalib_struct *clamp, char *result)
+     * extern float myscalalib_run(myscalalib_config *config, float left, float right)
      * }
      */
-    public static FunctionDescriptor myscalalib_complex$descriptor() {
-        return myscalalib_complex.DESC;
+    public static FunctionDescriptor myscalalib_run$descriptor() {
+        return myscalalib_run.DESC;
     }
 
     /**
      * Downcall method handle for:
      * {@snippet lang=c :
-     * extern void myscalalib_complex(int times, myscalalib_struct *clamp, char *result)
+     * extern float myscalalib_run(myscalalib_config *config, float left, float right)
      * }
      */
-    public static MethodHandle myscalalib_complex$handle() {
-        return myscalalib_complex.HANDLE;
+    public static MethodHandle myscalalib_run$handle() {
+        return myscalalib_run.HANDLE;
     }
 
     /**
      * Address for:
      * {@snippet lang=c :
-     * extern void myscalalib_complex(int times, myscalalib_struct *clamp, char *result)
+     * extern float myscalalib_run(myscalalib_config *config, float left, float right)
      * }
      */
-    public static MemorySegment myscalalib_complex$address() {
-        return myscalalib_complex.ADDR;
+    public static MemorySegment myscalalib_run$address() {
+        return myscalalib_run.ADDR;
     }
 
     /**
      * {@snippet lang=c :
-     * extern void myscalalib_complex(int times, myscalalib_struct *clamp, char *result)
+     * extern float myscalalib_run(myscalalib_config *config, float left, float right)
      * }
      */
-    public static void myscalalib_complex(int times, MemorySegment clamp, MemorySegment result) {
-        var mh$ = myscalalib_complex.HANDLE;
+    public static float myscalalib_run(MemorySegment config, float left, float right) {
+        var mh$ = myscalalib_run.HANDLE;
         try {
             if (TRACE_DOWNCALLS) {
-                traceDowncall("myscalalib_complex", times, clamp, result);
+                traceDowncall("myscalalib_run", config, left, right);
             }
-            mh$.invokeExact(times, clamp, result);
+            return (float)mh$.invokeExact(config, left, right);
         } catch (Throwable ex$) {
            throw new AssertionError("should not reach here", ex$);
         }

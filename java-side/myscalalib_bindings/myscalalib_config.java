@@ -15,21 +15,22 @@ import static java.lang.foreign.MemoryLayout.PathElement.*;
 /**
  * {@snippet lang=c :
  * struct {
- *     char a;
- *     char b;
+ *     myscalalib_operation op;
+ *     char *label;
  * }
  * }
  */
-public class myscalalib_struct {
+public class myscalalib_config {
 
-    myscalalib_struct() {
+    myscalalib_config() {
         // Should not be called directly
     }
 
     private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
-        interface_h.C_CHAR.withName("a"),
-        interface_h.C_CHAR.withName("b")
-    ).withName("$anon$3:9");
+        interface_h.C_INT.withName("op"),
+        MemoryLayout.paddingLayout(4),
+        interface_h.C_POINTER.withName("label")
+    ).withName("$anon$7:9");
 
     /**
      * The layout of this struct
@@ -38,92 +39,92 @@ public class myscalalib_struct {
         return $LAYOUT;
     }
 
-    private static final OfByte a$LAYOUT = (OfByte)$LAYOUT.select(groupElement("a"));
+    private static final OfInt op$LAYOUT = (OfInt)$LAYOUT.select(groupElement("op"));
 
     /**
      * Layout for field:
      * {@snippet lang=c :
-     * char a
+     * myscalalib_operation op
      * }
      */
-    public static final OfByte a$layout() {
-        return a$LAYOUT;
+    public static final OfInt op$layout() {
+        return op$LAYOUT;
     }
 
-    private static final long a$OFFSET = 0;
+    private static final long op$OFFSET = 0;
 
     /**
      * Offset for field:
      * {@snippet lang=c :
-     * char a
+     * myscalalib_operation op
      * }
      */
-    public static final long a$offset() {
-        return a$OFFSET;
+    public static final long op$offset() {
+        return op$OFFSET;
     }
 
     /**
      * Getter for field:
      * {@snippet lang=c :
-     * char a
+     * myscalalib_operation op
      * }
      */
-    public static byte a(MemorySegment struct) {
-        return struct.get(a$LAYOUT, a$OFFSET);
+    public static int op(MemorySegment struct) {
+        return struct.get(op$LAYOUT, op$OFFSET);
     }
 
     /**
      * Setter for field:
      * {@snippet lang=c :
-     * char a
+     * myscalalib_operation op
      * }
      */
-    public static void a(MemorySegment struct, byte fieldValue) {
-        struct.set(a$LAYOUT, a$OFFSET, fieldValue);
+    public static void op(MemorySegment struct, int fieldValue) {
+        struct.set(op$LAYOUT, op$OFFSET, fieldValue);
     }
 
-    private static final OfByte b$LAYOUT = (OfByte)$LAYOUT.select(groupElement("b"));
+    private static final AddressLayout label$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("label"));
 
     /**
      * Layout for field:
      * {@snippet lang=c :
-     * char b
+     * char *label
      * }
      */
-    public static final OfByte b$layout() {
-        return b$LAYOUT;
+    public static final AddressLayout label$layout() {
+        return label$LAYOUT;
     }
 
-    private static final long b$OFFSET = 1;
+    private static final long label$OFFSET = 8;
 
     /**
      * Offset for field:
      * {@snippet lang=c :
-     * char b
+     * char *label
      * }
      */
-    public static final long b$offset() {
-        return b$OFFSET;
+    public static final long label$offset() {
+        return label$OFFSET;
     }
 
     /**
      * Getter for field:
      * {@snippet lang=c :
-     * char b
+     * char *label
      * }
      */
-    public static byte b(MemorySegment struct) {
-        return struct.get(b$LAYOUT, b$OFFSET);
+    public static MemorySegment label(MemorySegment struct) {
+        return struct.get(label$LAYOUT, label$OFFSET);
     }
 
     /**
      * Setter for field:
      * {@snippet lang=c :
-     * char b
+     * char *label
      * }
      */
-    public static void b(MemorySegment struct, byte fieldValue) {
-        struct.set(b$LAYOUT, b$OFFSET, fieldValue);
+    public static void label(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(label$LAYOUT, label$OFFSET, fieldValue);
     }
 
     /**

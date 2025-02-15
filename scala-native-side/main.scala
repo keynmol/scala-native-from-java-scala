@@ -1,18 +1,21 @@
 package myscalalib.impl
 
 import scalanative.unsafe.*
+import myscalalib.all.*
 
-object Implementations extends myscalalib.ExportedFunctions {
-  import _root_.myscalalib.structs.*
-  /**
-   * [bindgen] header: interface.h
-  */
-  def myscalalib_complex(times : CInt, clamp : Ptr[myscalalib_struct], result : CString): Unit = 
-    ()
+object Implementations extends myscalalib.ExportedFunctions:
 
-  /**
-   * [bindgen] header: interface.h
-  */
-  def myscalalib_exports(i : CInt, r : CInt): CInt = i + r
-}
-  
+  def myscalalib_run(
+      config: Ptr[myscalalib_config],
+      left: Float,
+      right: Float
+  ): Float =
+    val cfg = !config
+    val label = fromCString(cfg.label)
+    if cfg.op == myscalalib_operation.ADD then
+      scribe.info(s"[$label] $left + $right = ${left + right}")
+      left + right
+    else if cfg.op == myscalalib_operation.MULTIPLY then
+      scribe.info(s"[$label] $left * $right = ${left * right}")
+      left * right
+    else ???
