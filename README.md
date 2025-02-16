@@ -2,7 +2,7 @@
 
 Demonstration project for my [blog post](https://blog.indoorvivants.com/2025-02-16-scala-native-from-java-via-ffm).
 
-Uses Scala CLI.
+Uses [Scala CLI](https://scala-cli.virtuslab.org/).
 
 Run with `make run`. 
 
