@@ -30,7 +30,7 @@ public class myscalalib_config {
         interface_h.C_INT.withName("op"),
         MemoryLayout.paddingLayout(4),
         interface_h.C_POINTER.withName("label")
-    ).withName("$anon$7:9");
+    ).withName("$anon$3:9");
 
     /**
      * The layout of this struct

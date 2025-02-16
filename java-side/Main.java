@@ -15,12 +15,7 @@ public class Main {
 		} else {
 			dylibPath = args[0];
 		}
-		var p = Paths.get(dylibPath).toAbsolutePath().toString();
-
-		System.load(p);
-
-		// Make sure Scala Native GC is initialised correctly!
-		assert (interface_h.ScalaNativeInit() == 0);
+		System.load(Paths.get(dylibPath).toAbsolutePath().toString());
 
 		// Run exported functions
 		try (Arena arena = Arena.ofConfined()) {
@@ -33,7 +28,6 @@ public class Main {
 			myscalalib_config.label(config, arena.allocateFrom("Second"));
 			myscalalib_config.op(config, interface_h.MULTIPLY());
 			interface_h.myscalalib_run(config, 50.0f, 10.0f);
-
 		}
 
 	}

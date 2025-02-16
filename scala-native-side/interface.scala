@@ -75,7 +75,8 @@ object functions extends ExportedFunctions:
    * [bindgen] header: interface.h
   */
   @exported
-  override def myscalalib_run(config : Ptr[myscalalib_config], left : Float, right : Float): Float = myscalalib.impl.Implementations.myscalalib_run(config, left, right)
+  override def myscalalib_run(config : Ptr[myscalalib_config], left : Float, right : Float): Float = 
+    myscalalib.impl.Implementations.myscalalib_run(config, left, right)
 
 object types:
   export _root_.myscalalib.structs.*
