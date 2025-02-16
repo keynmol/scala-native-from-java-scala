@@ -24,6 +24,8 @@ jobs:
       - uses: coursier/cache-action@v6
 
       - uses: VirtusLab/scala-cli-setup@main
+        with:
+          power: true
 
       - name: Test
         run: make run
